@@ -1,24 +1,18 @@
-// Given two sorted arrays passed as parameters,
-// create a function able to return all the number that are present
-// in one array and in the other.
+// Write a function that takes an array of strings and returns
+// the longest string that appears in every parameter's strings. If more that one
+// string qualifies, it will return the one that appears first in the first
+// parameter. Note that the empty string technically appears in any string.
 
-const print_duplicates = (
-  arr1: number[],
-  num1: number,
-  arr2: number[],
-  num2: number
-) => {
-  let i = 0;
-  let j = 0;
-
-  while (i < num1 && j < num2) {
-    if (arr1[i] < arr2[j]) {
-      i++;
-    } else if (arr2[j] < arr1[i]) {
-      j++;
-    } else {
-      console.log(arr2[j++]);
-      i++;
+const str_maxlenoc = (arr: string[], num: number): string => {
+  const str = arr[0];
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    for (let j = i + 1; j < str.length + 1; j++) {
+      const sub = str.slice(i, j);
+      if (sub.length > result.length && arr.every((str) => str.includes(sub))) {
+        result = sub;
+      }
     }
   }
+  return result;
 };
